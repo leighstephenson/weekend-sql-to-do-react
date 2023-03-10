@@ -5,7 +5,7 @@ function addItem(event) {
     console.log('In addItem function')
 
     let taskName = //TODO list HTML link here;
-    let date = //TODO list HTML link here;
+    let date = //TODO list HTML link here; 
     let completionStatus = //TODO list HTML link here
 
 
