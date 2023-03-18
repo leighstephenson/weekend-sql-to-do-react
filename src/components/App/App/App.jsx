@@ -1,10 +1,11 @@
 import {useState} from 'react';
+import Header from '../../Header/Header';
 
 function App () {
   
   return (
     <div>
-      <h1>TO DO APP</h1>
+      <Header />
     </div>
   );
 
