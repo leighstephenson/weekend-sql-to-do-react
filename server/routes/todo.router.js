@@ -1,13 +1,12 @@
 const express = require('express');
 const taskRouter = express.Router();
-const pool = require('../modules/pool.js');
+const pool = require('../server/modules/pool.js');
 
 
 //DB connection
 let taskArray = [];
 
 // GET
-//! Table name = list, need to build on postico
 taskRouter.get('/', (req, res) => {
     console.log ('GET request');
     let queryText = 'SELECT * FROM "taskList";'; //sends back list of to do tasks
