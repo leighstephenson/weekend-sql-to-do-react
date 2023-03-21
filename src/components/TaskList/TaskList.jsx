@@ -24,13 +24,14 @@ useEffect(() => {
 const submitForm = (e) => {
     e.preventDefault();
     axios.post('/todolist', {
-        taskName: taskName,
+        taskname: taskName,
         date: date,
-        completionStatus: completionStatus,
+        completionstatus: completionStatus,
     }).then((response) => {
         setTaskName('');
         setDate(''); //These clear the input fields
         setCompletionStatus('');
+    fetchTaskList(); //calls the object
     }).catch((error) => {
         console.log(`Error in POST on TaskList: ${error}`);
         alert('Something wrong in POST on TaskList');

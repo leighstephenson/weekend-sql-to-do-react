@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 import {useState} from 'react';
-import Header from '../../Header/Header.jsx';
-import TaskList from '../../TaskList/TaskList.jsx';
+import Header from '../Header/Header';
+import TaskList from '../TaskList/TaskList';
 import axios from 'axios';
 
-function App () {
+function App() {
   
   return (
     <div>
