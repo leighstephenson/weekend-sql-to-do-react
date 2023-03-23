@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import TaskItem from './TaskItem';
 
 function TaskList() {
     const [taskName, setTaskName] = useState('');
@@ -63,10 +64,11 @@ const submitForm = (e) => {
         <ul>
             {
                 listOfTasks.map((task) => (
-                    <li key={task.id}>
-                        //! May need to edit these 
-                       Task: {task.taskName} Date: {task.date} Status: {task.completionStatus}
-                    </li>
+                    <TaskItem 
+                    key={task.id}
+                    task={task}
+                    fetchTaskList={fetchTaskList}
+                    />
                 ))
             };
         </ul>
