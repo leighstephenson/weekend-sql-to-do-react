@@ -54,6 +54,7 @@ pool.query(queryText, [taskToEdit.taskname, taskToEdit.date, taskToEdit.completi
 
 // DELETE
 taskRouter.delete('/:id', (req, res) => {
+    console.log('this is the deleted id:', req.params.id)
     const deleteIndex = Number(req.params.id);
 let queryText = `DELETE FROM "tasklist" WHERE "id" = $1`;
 pool.query(queryText, [deleteIndex]).then((result) => {

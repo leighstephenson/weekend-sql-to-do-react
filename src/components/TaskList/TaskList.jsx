@@ -37,7 +37,7 @@ const submitForm = (e) => {
         console.log(`Error in POST on TaskList: ${error}`);
         alert('Something wrong in POST on TaskList');
     })
-}
+};
     return ( 
 
         <> 
@@ -70,15 +70,11 @@ const submitForm = (e) => {
                     fetchTaskList={fetchTaskList}
                     />
                 ))
-            };
+            }
         </ul>
         </>
-
-
     );
-
-
-}//End TaskInput function
+}//End TaskList function
 
 
 

@@ -1,0 +1,16 @@
+.deleteButton {
+	display: inline-block;
+	padding: 5px 10px;
+	border-color: #014041;
+	border-width: 1px 1px 3px;
+	border-radius: 4px;
+	background-color: #00acb0;
+	color: #f8f8f8;
+	outline: 0;
+	cursor: pointer;
+    margin: 5px;
+}
+
+.listItem {
+    
+}
