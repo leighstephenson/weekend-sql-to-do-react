@@ -8,7 +8,8 @@ function TaskList() {
     const [listOfTasks, setListOfTasks] = useState([]);
     const [completionStatus, setCompletionStatus]= useState('');
     const fetchTaskList = () => {
-   
+
+//! GET request
      axios.get('/todolist').then((response) => {
         //update the array
         setListOfTasks(response.data);
@@ -22,6 +23,7 @@ useEffect(() => {
     fetchTaskList();
 }, []);
 
+//! POST request
 const submitForm = (e) => {
     e.preventDefault();
     axios.post('/todolist', {
@@ -38,6 +40,8 @@ const submitForm = (e) => {
         alert('Something wrong in POST on TaskList');
     })
 };
+
+//! Form to enter task and date, displays on the DOM
     return ( 
 
         <> 

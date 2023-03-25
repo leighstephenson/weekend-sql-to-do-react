@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 //DB connection
 let taskArray = [];
 
-// GET
+//! GET request
 taskRouter.get('/', (req, res) => {
     console.log ('GET request');
     let queryText = 'SELECT * FROM "tasklist";'; //sends back list of to do tasks
@@ -18,7 +18,7 @@ taskRouter.get('/', (req, res) => {
     });
 });
 
-// POST
+//! POST request to add task to "tasklist" table on database
 taskRouter.post('/', (req, res) => {
     console.log('POST request');
     console.log(req.body);
@@ -36,7 +36,7 @@ pool.query(queryText, values).then((result) => {
 
 
 
-// PUT
+//! PUT request to update "tasklist" with new task
 taskRouter.put('/:id', (req, res) => {
     console.log('In PUT request');
     
@@ -51,32 +51,28 @@ pool.query(queryText, [taskToEdit.taskname, taskToEdit.date, taskToEdit.completi
 })
 });
 
-// PUT
+//! PUT request to update the database with completion status when marked complete
 taskRouter.put('/completedstatus/:id', (req, res) => {
-    console.log('In mark PUT request');
-    console.log("this is the task you sent through to update:", req.body)
-    console.log("completion status to be changed", req.body.completionstatus)
 let taskToEdit = req.body;
 let completionstatus;
 if (taskToEdit.completionstatus === false) {
-    completionstatus = true
+    completionstatus = true        //this conditional toggles completion status
 } else if (taskToEdit.completionstatus === true) {
     completionstatus = false
 }
-console.log('new completion status', completionstatus)
-// UPDATE "tasklist" and change completionstatus column to opposite of what it is currently WHERE the id is taskToEdit.id"
 let queryText = 'UPDATE "tasklist" SET "completionstatus" = $1 WHERE "id" = $2'; //TODO set in desc order
+ //! tried adding this: ORDER BY "id" DESC into the above query text, but it gives a syntax error.
 pool.query(queryText, [completionstatus, taskToEdit.id]).then((result) => {
     res.sendStatus(200);
 }).catch((error) => {
-    console.log(`Error in PUT: ${error} `);
+    console.log(`Error in PUT on router: ${error} `);
     res.sendStatus(500);
 })
 });
 
 
 
-// DELETE
+//! DELETE request
 taskRouter.delete('/:id', (req, res) => {
     console.log('this is the deleted id:', req.params.id)
     const deleteIndex = Number(req.params.id);

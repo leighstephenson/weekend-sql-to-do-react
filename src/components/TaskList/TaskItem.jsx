@@ -5,6 +5,7 @@ import {useState} from 'react'
 function TaskItem({ task, fetchTaskList }) {
     const [completed, setCompleted] = useState("No")
 
+//! PUT request
     const markComplete = (e) => {
         console.log(task.id)
         axios.put(`/todolist/completedstatus/${task.id}`, task).then(response => {
@@ -17,6 +18,7 @@ function TaskItem({ task, fetchTaskList }) {
 
     }// end markComplete function
 
+//! DELETE request
     const removeTask = (e) => {
         
         axios.delete(`/todolist/${task.id}`).then((response) => {
@@ -27,6 +29,7 @@ function TaskItem({ task, fetchTaskList }) {
         })
     };// end removeTask function
 
+//! Sets completionstatus to correspond with that status on the database
     let completionstatus;
     if (task.completionstatus === true) {
         completionstatus = "Yes"
@@ -34,29 +37,28 @@ function TaskItem({ task, fetchTaskList }) {
         completionstatus = "No"
     }; 
 
-//! Need to move this color changing functionality into a conditional and get rid of this
-    event.target.parentElement.style.backgroundColor='green'; //changes background color of parent 
-    event.target.parentElement.style.color='lightGreen'; //changes text color of parent 
-    
-    //TODO conditional will go here to change color
-    //if (task.completionstatus === true) {
-       //todo finish setting background/text color
-    //}else {
+//! This will change the background color of the <li> depending on completion status
+const changeColor = () => {
+    if (completionstatus === "Yes") {
+        return 'green'
+    } else {
+        return 'none'
+    };
+} //end changeColor()
 
-    //}
-
+//!What will display on the DOM
     return (
 
         <>
-            <li className='listItem'>
+            <li style={{backgroundColor: changeColor()}} className='listItem'>
                 Task- {task.taskname}. <br/> Date- {task.date}. <br/> Completion Status- {completionstatus}
-                <button className='complete-button' onClick={(e) => markComplete(e)}> Mark Complete</button>
+                <button className='complete-button' onClick={(e) => markComplete(e)} > Mark Complete</button>
                 <button className='delete-button' onClick= {(e) => removeTask(e)}> Delete </button>
                 
             </li>
         </>
 
-    )
-}//end function
+    )//end return
+}//end TaskItem()
 
 export default TaskItem;
