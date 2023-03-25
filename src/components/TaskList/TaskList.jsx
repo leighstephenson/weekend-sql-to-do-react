@@ -5,8 +5,8 @@ import TaskItem from './TaskItem';
 function TaskList() {
     const [taskName, setTaskName] = useState('');
     const [date, setDate] = useState('');
-    const [completionStatus, setCompletionStatus] = useState('');
     const [listOfTasks, setListOfTasks] = useState([]);
+    const [completionStatus, setCompletionStatus]= useState('');
     const fetchTaskList = () => {
    
      axios.get('/todolist').then((response) => {
@@ -27,7 +27,7 @@ const submitForm = (e) => {
     axios.post('/todolist', {
         taskname: taskName,
         date: date,
-        completionstatus: completionStatus,
+        completionstatus: false,
     }).then((response) => {
         setTaskName('');
         setDate(''); //These clear the input fields
@@ -42,6 +42,7 @@ const submitForm = (e) => {
 
         <> 
             <h3>Enter Task for To Do List:</h3>
+    <div className="form-style">
         <form onSubmit={submitForm}>
                 Task: <input type="text"
                     value={taskName}
@@ -54,13 +55,9 @@ const submitForm = (e) => {
 
                 />
             <br/>
-                Completion Status: <input type="text"
-                    value={completionStatus}
-                    onChange={(e) => setCompletionStatus(e.target.value)}
-
-                />
-            <input type="submit" />
+            <input className="submitButton" type="submit" />
         </form>
+    </div>
         <ul>
             {
                 listOfTasks.map((task) => (
@@ -71,8 +68,10 @@ const submitForm = (e) => {
                     />
                 ))
             }
+            
         </ul>
         </>
+        
     );
 }//End TaskList function
 

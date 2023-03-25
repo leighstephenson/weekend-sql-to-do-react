@@ -1,28 +1,18 @@
 import axios from 'axios'
 import './TaskItem.css'
+import {useState} from 'react'
 
 function TaskItem({ task, fetchTaskList }) {
-
-    const changeTextColor = () => {
-        if (task.completionstatus === 'Yes'){
-            return 'white'
-        } else {
-            return 'none'
-        };
-    };//end getDecoration function
-
-    //!Need to get this working, need to call this function within the <li>
-    const changeBackgroundColor = () => {
-        console.log(task.completionstatus);
-        if( task.completionstatus === 'Yes'){
-            return 'red'
-        } else {
-            return 'none';
-        };
-    };
+    const [completed, setCompleted] = useState("No")
 
     const markComplete = (e) => {
-//! Need to finish making this to "complete" tasks rather than having users input a completion status
+        console.log(task.id)
+        axios.put(`/todolist/completedstatus/${task.id}`, task).then(response => {
+            fetchTaskList();
+        }).catch((error) => {
+            console.log(`Error in markComplete ${error}`);
+            alert('Something is wrong in markComplete.');
+        })
 
 
     }// end markComplete function
@@ -36,14 +26,32 @@ function TaskItem({ task, fetchTaskList }) {
             alert('Something is wrong in delete.');
         })
     };// end removeTask function
- 
+
+    let completionstatus;
+    if (task.completionstatus === true) {
+        completionstatus = "Yes"
+    } else if (task.completionstatus === false) {
+        completionstatus = "No"
+    }; 
+
+//! Need to move this color changing functionality into a conditional and get rid of this
+    event.target.parentElement.style.backgroundColor='green'; //changes background color of parent 
+    event.target.parentElement.style.color='lightGreen'; //changes text color of parent 
+    
+    //TODO conditional will go here to change color
+    //if (task.completionstatus === true) {
+       //todo finish setting background/text color
+    //}else {
+
+    //}
+
     return (
 
         <>
-            <li className='listItem' style= {{ color: changeTextColor(), backgroundColor: changeBackgroundColor()}}>
-                Task: {task.taskname} Date: {task.date} Status: {task.completionstatus}
-                <button onClick={(e) => markComplete(e)}> Mark Complete</button>
-                <button className='deleteButton' onClick= {(e) => removeTask(e)}> Delete </button>
+            <li className='listItem'>
+                Task- {task.taskname}. <br/> Date- {task.date}. <br/> Completion Status- {completionstatus}
+                <button className='complete-button' onClick={(e) => markComplete(e)}> Mark Complete</button>
+                <button className='delete-button' onClick= {(e) => removeTask(e)}> Delete </button>
                 
             </li>
         </>
