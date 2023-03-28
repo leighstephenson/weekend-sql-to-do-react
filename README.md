@@ -6,6 +6,9 @@ Weekend SQL To-Do App
 This is a full-stack web application that allows users to keep track of various tasks they need to do. Users are required to input the name of the task, they can choose to enter a due date or leave it blank. After a task is added to the list, that task is stored in a database and also displayed on the DOM. Users are able to mark an item as complete and/or delete it. Both of these actions will update that task on the database. 
 
 
+## Image
+![screenshot](./public/images/todo-screenshot.png) 
+
 ## Duration
 Several days of work over a 3 week period.
 
@@ -17,6 +20,7 @@ Several days of work over a 3 week period.
 - Postico
 - Postgres
 - Axios
+
 
 
 ## Installation
