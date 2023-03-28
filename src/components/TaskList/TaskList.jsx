@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskItem from './TaskItem';
+import './TaskItem.css'
+
 
 function TaskList() {
     const [taskName, setTaskName] = useState('');
@@ -48,20 +50,17 @@ const submitForm = (e) => {
             <h3>Enter Task for To Do List:</h3>
     <div className="form-style">
         <form onSubmit={submitForm}>
-                Task: <input type="text"
-                    value={taskName}
-                    onChange={(e) => setTaskName(e.target.value)}
-                />
+                Task: <input type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} required/>
             <br/>
-                Date: <input type="text"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                Date: <input type="text" value={date} onChange={(e) => setDate(e.target.value)} />
 
-                />
+            <br/>
             <br/>
             <input className="submitButton" type="submit" />
         </form>
     </div>
+
+    <div className="centered-ul">
         <ul>
             {
                 listOfTasks.map((task) => (
@@ -74,6 +73,7 @@ const submitForm = (e) => {
             }
             
         </ul>
+    </div>
         </>
         
     );

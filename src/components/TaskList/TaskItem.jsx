@@ -42,16 +42,16 @@ const changeColor = () => {
     if (completionstatus === "Yes") {
         return 'green'
     } else {
-        return 'none'
+        return '#FFB3A2'
     };
 } //end changeColor()
 
-//!What will display on the DOM
+//!What will display on the DOM, changeColor() will set the background color based on value of completionstatus variable
     return (
 
         <>
             <li style={{backgroundColor: changeColor()}} className='listItem'>
-                Task- {task.taskname}. <br/> Date- {task.date}. <br/> Completion Status- {completionstatus}
+                Task: {task.taskname} <br/> Date: {task.date} <br/> Completed: {completionstatus} <br/>
                 <button className='complete-button' onClick={(e) => markComplete(e)} > Mark Complete</button>
                 <button className='delete-button' onClick= {(e) => removeTask(e)}> Delete </button>
                 
